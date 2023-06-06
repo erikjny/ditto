@@ -242,7 +242,7 @@ def tune_threshold(config, model, hp):
     os.system("rm tmp.jsonl")
 
     labels = []
-    with open(validset) as fin:
+    with open(validset, encoding='utf-8') as fin:
         for line in fin:
             labels.append(int(line.split('\t')[-1]))
 
