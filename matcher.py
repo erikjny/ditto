@@ -163,7 +163,7 @@ def predict(input_path, output_path, config,
     # convert to jsonlines
     if '.txt' in input_path:
         with jsonlines.open(input_path + '.jsonl', mode='w') as writer:
-            for line in open(input_path):
+            for line in open(input_path, encoding='utf-8'):
                 writer.write(line.split('\t')[:2])
         input_path += '.jsonl'
 
