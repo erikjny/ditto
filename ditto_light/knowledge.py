@@ -40,7 +40,7 @@ class DKInjector:
         if not os.path.exists(out_fn) or \
             os.stat(out_fn).st_size == 0 or overwrite:
 
-            with open(out_fn, 'w') as fout:
+            with open(out_fn, 'w', encoding='utf-8') as fout:
                 for line in open(input_fn, encoding="utf-8"):
                     LL = line.split('\t')
                     if len(LL) == 3:
