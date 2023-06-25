@@ -309,6 +309,8 @@ if __name__ == "__main__":
     parser.add_argument("--max_len", type=int, default=256)
     hp = parser.parse_args()
 
+    start_time = time.time()
+
     # load the models
     set_seed(123)
     config, model = load_model(hp.task, hp.checkpoint_path,
@@ -336,3 +338,10 @@ if __name__ == "__main__":
             lm=hp.lm,
             dk_injector=dk_injector,
             threshold=threshold)
+
+    
+    end_time = time.time()
+    execution_time = end_time - start_time
+
+    print("Matching execution time:")
+    print(execution_time)
