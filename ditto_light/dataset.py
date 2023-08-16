@@ -68,6 +68,9 @@ class DittoDataset(data.Dataset):
         left = self.pairs[idx][0]
         right = self.pairs[idx][1]
 
+        org_left = left
+        org_right = right
+
         # left + right
         x = self.tokenizer.encode(text=left,
                                   text_pair=right,
@@ -77,7 +80,12 @@ class DittoDataset(data.Dataset):
         # augment if da is set
         if self.da is not None:
             combined = self.augmenter.augment_sent(left + ' [SEP] ' + right, self.da)
-            left, right = combined.split(' [SEP] ')
+            try:
+                left, right = combined.split(' [SEP] ')
+            except ValueError:
+                left = org_left
+                right = org_right
+
             x_aug = self.tokenizer.encode(text=left,
                                       text_pair=right,
                                       max_length=self.max_len,
