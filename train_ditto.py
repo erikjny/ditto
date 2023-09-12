@@ -4,6 +4,7 @@ import json
 import sys
 import time
 import torch
+import time
 import numpy as np
 import random
 
@@ -34,6 +35,8 @@ if __name__=="__main__":
     parser.add_argument("--size", type=int, default=None)
 
     hp = parser.parse_args()
+
+    start_time = time.time()
 
     # set seeds
     start_time = time.time()
@@ -93,3 +96,10 @@ if __name__=="__main__":
           valid_dataset,
           test_dataset,
           run_tag, hp)
+
+    end_time = time.time()
+    execution_time = end_time - start_time
+
+    print("Training execution time:")
+    print(execution_time)
+
