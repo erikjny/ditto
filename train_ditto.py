@@ -2,6 +2,7 @@ import os
 import argparse
 import json
 import sys
+import time
 import torch
 import numpy as np
 import random
@@ -35,6 +36,8 @@ if __name__=="__main__":
     hp = parser.parse_args()
 
     # set seeds
+    start_time = time.time()
+
     seed = hp.run_id
     random.seed(seed)
     np.random.seed(seed)
